@@ -1,0 +1,19 @@
+import requests
+
+# URLs for the YOLOv8 model files
+yolo_weights_url = "https://github.com/ultralytics/yolov8/releases/download/v8.0/yolov8m.pt"
+yolo_config_url = "https://github.com/ultralytics/yolov8/releases/download/v8.0/yolov8m.cfg"
+
+# Function to download a file
+def download_file(url, filename):
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(filename, 'wb') as f:
+            f.write(response.content)
+        print(f"Downloaded: {filename}")
+    else:
+        print(f"Failed to download {filename}. Status code: {response.status_code}")
+
+# Download the files
+download_file(yolo_weights_url, "yolov8m.pt")
+download_file(yolo_config_url, "yolov8m.cfg")
